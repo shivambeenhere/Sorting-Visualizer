@@ -1,12 +1,13 @@
 
-var barsCount = 256;
+var barsCount = 200;
 var heights = [];
-
 var sorted = false;
-
+var sortbtn = document.getElementById('init');
+var resetbtn = document.getElementById('shuffle');
+resetbtn.disabled = true;
 function makeBars() {
     for (let i = 1; i <= barsCount / 2; i++) {
-        $("#sort-container").append("<div class='bar'></div>");
+        $("#sort-container").append("<div class='bar' id='brcolor'></div>");
     }
 }
 
@@ -75,7 +76,7 @@ async function bubbleSort(heights) {
                 heights[j] = temp;
                 $(bars[j]).height(heights[j]);
                 $(bars[j - 1]).height(heights[j - 1]);
-                await timer(1);
+                await timer(2);
             }
         }
     }
@@ -287,22 +288,48 @@ var ahead = false;
 
 $("#init").click(function (e) {
     e.preventDefault();
+    sortbtn.disabled = true;
+    resetbtn.disabled = false;
     if (sorted)
         return;
     sorted = true;
     ahead = true;
     var option = $("#list").val();
     if (option == "bubble") {
+        document.getElementById('tct').innerHTML = "Time Complexity:";
+        document.getElementById('tc').innerHTML = "O(N²)";
+        document.getElementById('sct').innerHTML = "Space Complexity:"
+        document.getElementById('sc').innerHTML = "O(1)";
         bubbleSort(heights);
     } else if (option == "insertion") {
+        document.getElementById('tct').innerHTML = "Time Complexity:";
+        document.getElementById('tc').innerHTML = "O(N²)";
+        document.getElementById('sct').innerHTML = "Space Complexity:"
+        document.getElementById('sc').innerHTML = "O(1)";
         insertionSort(heights);
     } else if (option == "selection") {
+        document.getElementById('tct').innerHTML = "Time Complexity:";
+        document.getElementById('tc').innerHTML = "O(N²)";
+        document.getElementById('sct').innerHTML = "Space Complexity:"
+        document.getElementById('sc').innerHTML = "O(1)";
         selectionSort(heights, 0, heights.length - 1);
     } else if (option == "quick") {
+        document.getElementById('tct').innerHTML = "Average Time Complexity:"
+        document.getElementById('tc').innerHTML = "O(NlogN)";
+        document.getElementById('sct').innerHTML = "Space Complexity:"
+        document.getElementById('sc').innerHTML = "O(1)";
         quickSort(heights, 0, heights.length - 1);
     } else if (option == "count") {
+        document.getElementById('tct').innerHTML = "Time Complexity:";
+        document.getElementById('tc').innerHTML = "O(N+K)";
+        document.getElementById('sct').innerHTML = "Space Complexity:"
+        document.getElementById('sc').innerHTML = "O(K)";
         countingSort(heights, 0, 400);
     } else if (option == "merge") {
+        document.getElementById('tct').innerHTML = "Time Complexity:";
+        document.getElementById('tc').innerHTML = "O(NlogN)";
+        document.getElementById('sct').innerHTML = "Space Complexity:"
+        document.getElementById('sc').innerHTML = "O(N)";
         mergeSort(heights);
     }
 
@@ -311,6 +338,8 @@ $("#init").click(function (e) {
 
 $("#shuffle").click(function (e) {
     e.preventDefault();
+    sortbtn.disabled = false;
+    resetbtn.disabled = true;
     ahead = false;
     setRandomBars();
     sorted = false;
