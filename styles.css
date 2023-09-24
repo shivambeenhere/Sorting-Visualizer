@@ -1,5 +1,5 @@
 body {
-    background-color: #222831;
+    background-color: black;
     padding: 0;
     margin: 0;
 }
@@ -8,7 +8,7 @@ body {
     width: 100%;
     position: relative;
     top: 0;
-    background-color: blue;
+    background-color: black;
     height: 60px;
     margin: 0;
     color: white;
@@ -31,8 +31,24 @@ body {
 }
 
 .bar {
-    width: 5px;
-    background-color: beige;
+    width: 10px;
+    margin: 1px;
+    border: solid 2px black;
+    background-color: rgb(156, 241, 234);
+}
+
+.bar:hover {
+    transform: 1px;
+    background-color: rgb(38, 178, 45);
+}
+
+.tcbar {
+    display: hidden;
+    background-color: red;
+}
+
+.txcolor {
+    color: black;
 }
 
 #label {
