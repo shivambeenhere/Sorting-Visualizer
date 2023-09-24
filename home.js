@@ -1,5 +1,5 @@
 var speed = document.getElementById('setspeed');
-console.log(speed.value);
+//console.log(speed.value);
 var barsCount = 200;
 var heights = [];
 var sorted = false;
