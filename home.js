@@ -1,4 +1,5 @@
-
+var speed = document.getElementById('setspeed');
+console.log(speed.value);
 var barsCount = 200;
 var heights = [];
 var sorted = false;
@@ -10,7 +11,7 @@ function makeBars() {
         $("#sort-container").append("<div class='bar' id='brcolor'></div>");
     }
 }
-
+let time = 1;
 makeBars();
 var bars = $(".bar");
 
@@ -40,7 +41,7 @@ function setRandomBars() {
             heights[randomIndex] = temporaryValue;
             $(bars[currentIndex]).height(heights[currentIndex]);
             $(bars[randomIndex]).height(heights[randomIndex]);
-            await timer(1);
+            await timer(timer);
         }
 
         for (let i = 0; i < bars.length; i++) {
@@ -76,7 +77,7 @@ async function bubbleSort(heights) {
                 heights[j] = temp;
                 $(bars[j]).height(heights[j]);
                 $(bars[j - 1]).height(heights[j - 1]);
-                await timer(2);
+                await timer(time);
             }
         }
     }
@@ -107,7 +108,7 @@ async function quickSort(heights, left, right) {
                 swap(heights, i, j); //sawpping two elements
                 $(bars[i]).height(heights[i]);
                 $(bars[j]).height(heights[j]);
-                await timer(50);
+                await timer(time);
                 i++;
                 j--;
             }
@@ -145,7 +146,7 @@ async function selectionSort(heights) {
         heights[minIdx] = temp;
         $(bars[i]).height(heights[i]);
         $(bars[minIdx]).height(heights[minIdx]);
-        await timer(50);
+        await timer(time);
     }
     return heights;
 }
@@ -163,13 +164,13 @@ async function insertionSort(heights) {
                 return;
             heights[j] = heights[j - 1];
             $(bars[j]).height(heights[j]);
-            await timer(1);
+            await timer(time);
             j--;
         }
 
         heights[j] = el;
         $(bars[j]).height(heights[j]);
-        await timer(1);
+        await timer(time);
     }
 
     return heights;
@@ -193,7 +194,7 @@ async function countingSort(heights, min, max) {
                 return;
             heights[z++] = i;
             $(bars[z - 1]).height(heights[z - 1]);
-            await timer(10);
+            await timer(time);
         }
     }
     return heights;
@@ -273,7 +274,7 @@ async function mergeSort(heights) {
                     return;
                 heights[k] = R[j];
                 $(bars[k]).height(heights[k]);
-                await timer(1);
+                await timer(time);
                 j++;
                 k++;
             }
@@ -283,13 +284,21 @@ async function mergeSort(heights) {
 
 //mergesort(heights);
 //console.log(heights);
+speed.addEventListener("input", function () {
+    document.getElementById('ishowspeed').innerHTML = `${speed.value}`
+})
 
 var ahead = false;
-
-$("#init").click(function (e) {
-    e.preventDefault();
+function helper() {
+    var speed = document.getElementById('setspeed');
+    console.log(speed.value);
+    time = 50 - speed.value * 5;
     sortbtn.disabled = true;
     resetbtn.disabled = false;
+}
+$("#init").click(function (e) {
+    e.preventDefault();
+    helper();
     if (sorted)
         return;
     sorted = true;
