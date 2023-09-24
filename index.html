@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorting Visualiser</title>
+    <title>See The Sort!</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
 
@@ -14,7 +14,7 @@
 
 <body>
     <div id="header">
-        <h2>Sorting Visualiser</h2>
+        <h2>Sorting Visualizer</h2>
     </div>
 
     <div id="sorting-panel" class="d-flex justify-content-center">
@@ -25,7 +25,7 @@
 
     <div id="bottom-panel">
         <form>
-            <div class="form-row justify-content-center m-0 mt-4">
+            <div class="form-row justify-content-center m-0 mt-3">
                 <div class="form-group d-flex justify-content-center align-items-center">
                     <h5 id="label">Choose Your Sort!</h5>
                     <select name="" id="list" class="form-control">
@@ -36,14 +36,16 @@
                         <option value="quick">Quick Sort</option>
                         <option value="count">Counting Sort</option>
                     </select>
-                    <div class="d-flex justify-content-center align-items-center flex-row">
+                    <div class="d-flex justify-content-center align-items-center flex-row ml-4">
                         <h5 class="text-white mx-2">Set Speed</h5>
                         <input value="8" type="range" min="0" max="10" id="setspeed" class="mx-1 slider"
                             placeholder="Speed" step="1">
                         <p class="text-white my-2" id="ishowspeed">8</p>
                     </div>
                 </div>
+            </div>
 
+            <div class="form-row justify-content-center m-0 mt-1">
                 <button class="btn btn-success mx-3 my-2" id="init">Sort</button>
                 <button class="btn btn-danger mx-3 my-2" id="shuffle">Reset</button>
                 <div class="d-flex justify-content-center align-items-center flex-column" id="tcbar">
@@ -56,7 +58,6 @@
                         <h3 class="text-white" id="sc"></h3>
                     </div>
                 </div>
-
             </div>
 
         </form>

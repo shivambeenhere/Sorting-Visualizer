@@ -1,11 +1,12 @@
-var speed = document.getElementById('setspeed');
+let speed = document.getElementById('setspeed');
 //console.log(speed.value);
-var barsCount = 200;
-var heights = [];
-var sorted = false;
-var sortbtn = document.getElementById('init');
-var resetbtn = document.getElementById('shuffle');
+let barsCount = 200;
+let heights = [];
+let sorted = false;
+let sortbtn = document.getElementById('init');
+let resetbtn = document.getElementById('shuffle');
 resetbtn.disabled = true;
+resetbtn.style.cursor = "not-allowed";
 function makeBars() {
     for (let i = 1; i <= barsCount / 2; i++) {
         $("#sort-container").append("<div class='bar' id='brcolor'></div>");
@@ -13,7 +14,7 @@ function makeBars() {
 }
 let time = 1;
 makeBars();
-var bars = $(".bar");
+let bars = $(".bar");
 
 setRandomBars();
 
@@ -25,7 +26,7 @@ function setRandomBars() {
 
     //Shuffle the bars
     async function shuffle(heights) {
-        var currentIndex = heights.length,
+        let currentIndex = heights.length,
             temporaryValue,
             randomIndex;
 
@@ -59,20 +60,20 @@ function timer(ms) {
 }
 
 function swap(heights, first_Index, second_Index) {
-    var temp = heights[first_Index];
+    let temp = heights[first_Index];
     heights[first_Index] = heights[second_Index];
     heights[second_Index] = temp;
 }
 
 // BUBBLE SORT
 async function bubbleSort(heights) {
-    var len = heights.length;
-    for (var i = len - 1; i >= 0; i--) {
-        for (var j = 1; j <= i; j++) {
+    let len = heights.length;
+    for (let i = len - 1; i >= 0; i--) {
+        for (let j = 1; j <= i; j++) {
             if (ahead == false)
                 return;
             if (heights[j - 1] > heights[j]) {
-                var temp = heights[j - 1];
+                let temp = heights[j - 1];
                 heights[j - 1] = heights[j];
                 heights[j] = temp;
                 $(bars[j]).height(heights[j]);
@@ -86,9 +87,9 @@ async function bubbleSort(heights) {
 
 // QUICKSORT
 async function quickSort(heights, left, right) {
-    var index;
+    let index;
     if (heights.length > 1) {
-        var pivot = heights[Math.floor((right + left) / 2)], //middle element
+        let pivot = heights[Math.floor((right + left) / 2)], //middle element
             i = left, //left pointer
             j = right; //right pointer
         while (i <= j) {
@@ -130,11 +131,11 @@ async function quickSort(heights, left, right) {
 
 // SELECTION SORT
 async function selectionSort(heights) {
-    var minIdx, temp,
+    let minIdx, temp,
         len = heights.length;
-    for (var i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
         minIdx = i;
-        for (var j = i + 1; j < len; j++) {
+        for (let j = i + 1; j < len; j++) {
             if (ahead == false)
                 return;
             if (heights[j] < heights[minIdx]) {
@@ -153,7 +154,7 @@ async function selectionSort(heights) {
 
 // INSERTION SORT
 async function insertionSort(heights) {
-    var i, len = heights.length, el, j;
+    let i, len = heights.length, el, j;
 
     for (i = 1; i < len; i++) {
         el = heights[i];
@@ -178,7 +179,7 @@ async function insertionSort(heights) {
 
 // COUNTING SORT
 async function countingSort(heights, min, max) {
-    var i, z = 0, count = [];
+    let i, z = 0, count = [];
 
     for (i = min; i <= max; i++) {
         count[i] = 0;
@@ -203,31 +204,31 @@ async function countingSort(heights, min, max) {
 
 // MERGE SORT
 async function mergeSort(heights) {
-    var n = heights.length;
+    let n = heights.length;
     for (curr_size = 1; curr_size <= n - 1; curr_size = 2 * curr_size) {
         // Pick starting point of different subarrays of current size 
         for (left_start = 0; left_start < n - 1; left_start += 2 * curr_size) {
             // Find ending point of left subarray. mid+1 is starting  
             // point of right 
-            var a = left_start + curr_size - 1;
-            var b = n - 1;
-            var mid = a < b ? a : b;
-            //var mid = min(left_start + curr_size - 1, n-1); 
+            let a = left_start + curr_size - 1;
+            let b = n - 1;
+            let mid = a < b ? a : b;
+            //let mid = min(left_start + curr_size - 1, n-1); 
             a = left_start + 2 * curr_size - 1;
             b = n - 1;
-            var right_end = a < b ? a : b;
-            //var right_end = min(left_start + 2*curr_size - 1, n-1); 
+            let right_end = a < b ? a : b;
+            //let right_end = min(left_start + 2*curr_size - 1, n-1); 
 
-            var l = left_start;
-            var m = mid;
-            var r = right_end;
-            var i, j, k;
-            var n1 = m - l + 1;
-            var n2 = r - m;
+            let l = left_start;
+            let m = mid;
+            let r = right_end;
+            let i, j, k;
+            let n1 = m - l + 1;
+            let n2 = r - m;
 
             /* create temp arrays */
-            var L = new Array(n1);
-            var R = new Array(n2);
+            let L = new Array(n1);
+            let R = new Array(n2);
 
             /* Copy data to temp arrays L[] and R[] */
             for (i = 0; i < n1; i++)
@@ -288,13 +289,15 @@ speed.addEventListener("input", function () {
     document.getElementById('ishowspeed').innerHTML = `${speed.value}`
 })
 
-var ahead = false;
+let ahead = false;
 function helper() {
-    var speed = document.getElementById('setspeed');
+    let speed = document.getElementById('setspeed');
     console.log(speed.value);
     time = 50 - speed.value * 5;
     sortbtn.disabled = true;
+    sortbtn.style.cursor = "not-allowed";
     resetbtn.disabled = false;
+    resetbtn.style.cursor = "default";
 }
 $("#init").click(function (e) {
     e.preventDefault();
@@ -303,7 +306,7 @@ $("#init").click(function (e) {
         return;
     sorted = true;
     ahead = true;
-    var option = $("#list").val();
+    let option = $("#list").val();
     if (option == "bubble") {
         document.getElementById('tct').innerHTML = "Time Complexity:";
         document.getElementById('tc').innerHTML = "O(N²)";
@@ -345,10 +348,20 @@ $("#init").click(function (e) {
     //console.log(heights);
 });
 
+function reset() {
+    document.getElementById('tct').innerHTML = "";
+    document.getElementById('tc').innerHTML = "";
+    document.getElementById('sct').innerHTML = ""
+    document.getElementById('sc').innerHTML = "";
+    sortbtn.disabled = false;
+    sortbtn.style.cursor = "default";
+    resetbtn.disabled = true;
+    resetbtn.style.cursor = "not-allowed";
+}
+
 $("#shuffle").click(function (e) {
     e.preventDefault();
-    sortbtn.disabled = false;
-    resetbtn.disabled = true;
+    reset();
     ahead = false;
     setRandomBars();
     sorted = false;
